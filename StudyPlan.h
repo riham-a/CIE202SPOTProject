@@ -36,6 +36,15 @@ public:
 	Course* Courseposition(int x, int y, int year, SEMESTER sem);
 	int SETYEAR(int y);
 	SEMESTER SETSEM(int y);
+        bool checkUnivCompul();
+	bool UnivElective();
+	bool checkUniCre();
+	bool TrackCompulsory();
+	bool MajorCompulsory();
+	bool MajorElective();
+	int Course :: getCredits() const;
+	bool AddCourse(Course*, int year, SEMESTER);
+	vector <vector<Course*>> CollectCoursesSP();
 
 };
 
