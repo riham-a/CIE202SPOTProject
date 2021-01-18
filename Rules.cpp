@@ -1,5 +1,6 @@
 #include "Rules.h"
 
+Rules* IsReq;
 Rules.ReqUnivCredits = 14;
 Rules.ReqTrackCredits = 40;
 Rules.ReqMajorCredits = 78;
