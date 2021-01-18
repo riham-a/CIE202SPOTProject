@@ -23,5 +23,6 @@ public:
 
 	void virtual DrawMe(GUI*) const;
 	bool virtual Check_Credits(Course*) 
+	Course*PositionOfCourse(int x, int y, SEMESTER sem);
 };
 
