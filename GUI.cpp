@@ -104,6 +104,18 @@ void GUI::DrawCourse(const Course* pCrs)
 	int Code_y = gInfo.y + CRS_HEIGHT * 0.05;
 	pWind->SetFont(CRS_HEIGHT * 0.4, BOLD , BY_NAME, "Gramound");
 	pWind->SetPen(MsgColor);
+	if ( pCourse->GetType() == "UniversityCoumpulsory" || pCourse->GetType() == "UniversityElective") {
+		pWind->SetPen(GREEN, 2);
+	}
+	else if (pCourse->GetType() == "MajorCompulsory" || pCourse->GetType() == "MajorElective") {
+		pWind->SetPen(RED, 2);
+	}
+	else if (pCourse->GetType() == "TrackCoumpulsory" || pCourse->GetType() == "TrackCoumpulsoryElective") {
+		pWind->SetPen(YELLOW, 2);
+	}
+	else if (pCourse->GetType() == "MajorCoumpulsory" || pCourse->GetType() == "MajorElective") {
+		pWind->SetPen(BLACK, 2);
+
 
 	ostringstream crd;
 	crd<< "crd:" << pCrs->getCredits();
