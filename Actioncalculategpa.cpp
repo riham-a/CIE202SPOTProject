@@ -71,7 +71,7 @@ bool ActionCalculategpa::Execute() {
 					Course_Code invalidMsg = pGUI->GetSrting();
 					credits = 0;
 					a = 0;
-					i - 1;
+					i=i - 1;
 				}
 		
 				totalcredits += credits;
