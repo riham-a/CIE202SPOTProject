@@ -98,6 +98,34 @@ void Registrar::UpdateInterface()
 	pGUI->UpdateInterface();	//update interface items
 	pSPlan->DrawMe(pGUI);		//make study plan draw itself	
 }
+CourseInfo* Registrar::getcourseinfo(Course_Code code)
+{
+	for (int i = 0; i < RegRules.CourseCatalog.size(); i++)
+	{
+		if (RegRules.CourseCatalog[i].Code == code)
+		{
+			return &RegRules.CourseCatalog[i];
+		}
+	}
+	for (int z = 0; z < RegRules.CourseCatalog.size(); z++)
+	{
+		if (RegRules.CourseCatalog[z].Code != code)
+		{
+			return nullptr;
+		}
+	}
+}
+
+
+
+
+
+
+
+
+
+
+
 
 Registrar::~Registrar()
 {
