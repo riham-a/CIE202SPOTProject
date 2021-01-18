@@ -98,3 +98,108 @@ void StudyPlan::importCourseCatalog() const
 			return false;
 	};*/
 
+    Course* StudyPlan::Courseposition(int x, int y, int year, SEMESTER sem) 
+	{
+	Course* pointPointer = nullptr;
+	pointPointer = plan[year - 1]->PositionOfCourse(x, y, sem);
+	if (pointPointer != nullptr) {
+		return pointPointer;
+	}
+	else
+	{
+		return pointPointer;
+	}
+}
+	int StudyPlan::SETYEAR(int x) {
+		int year;
+		if (x > 0 && x < 264) { //year
+			year = 1;
+			return year;
+		}
+		if (x>264 && x < 528) {
+			year = 2;
+			return year;
+		}
+		if (x > 528 && x < 792) {
+			year = 3;
+			return year;
+		}
+		if (x > 792 && x <1056) {
+			year = 4;
+			return year;
+		}
+		if (x > 1056 && x <1320) {
+			year = 5;
+			return year;
+		}
+	}
+	SEMESTER StudyPlan::SETSEM(int x) {
+		SEMESTER s;
+		 if (x > 0 && x < 88) { //sem
+			s = FALL;
+			return s;
+		}
+		else if (x > 88 && x < 176) {
+			s = SPRING;
+			return s;
+		}
+		else if (x > 176 && x < 264) {
+			s = SUMMER;
+			return s;
+		}
+		else if (x > 264 && x < 352) {
+			s = FALL;
+			return s;
+		}
+		else if (x > 352 && x < 440) {
+			s = SPRING;
+			return s;
+		}
+		else	if (x > 440 && x < 528) {
+			s = SUMMER;
+			return s;
+		}
+		else if (x > 528 && x < 616) {
+			s = FALL;
+			return s;
+		}
+		else if (x > 616 && x < 704) {
+			s = SPRING;
+			return s;
+		}
+		else if (x > 704 && x < 792) {
+			s = SUMMER;
+			return s;
+		}
+		else	if (x > 792 && x < 880) {
+			s = FALL;
+			return s;
+		}
+		else if (x > 880 && x < 968) {
+			s = SPRING;
+			return s;
+		}
+		else if (x > 968 && x < 1056) {
+			s = SUMMER;
+			return s;
+		}
+		else if (x > 1056 && x <1144) {
+			s = FALL;
+			return s;
+		}
+		else if (x > 1144 && x < 1232) {
+			s = SPRING;
+			return s;
+		}
+		else if (x > 1232 && x < 1320) {
+			s = SUMMER;
+			return s;
+		}
+
+	}
+
+	bool StudyPlan::donelist(Course_Code CODE)
+	{
+		donecourses.push_back(CODE);
+		return true;
+	}
