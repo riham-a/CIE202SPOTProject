@@ -1,0 +1,3 @@
+PHYS102,Introduction to Electromagnism,3,Coreq:PHYS112,Prereq:PHYS101 and MATH101
+MATH102,Calculus||,3,Prereq:MATH101
+CSCI101,Introduction to Computer science,2
