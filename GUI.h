@@ -20,17 +20,18 @@ class GUI
 		//If you want to change the menu items order, just change the order here
 		ITM_ADD,		//Add a new course
 
-						//TODO: Add more items names here
-
-
-		ITM_EXIT,		//Exit item
+		ITM_CS,
+	        ITM_Minor,
+		ITM_SU,		
+	        ITM_calculategpa,				//TODO: Add more items names here
+                ITM_EXIT,		//Exit item
 		ITM_Notes,
 		ITM_CNT			//no. of menu items ==> This should be the last line in this enum
 
 	};
 
 	//Some constants for GUI
-	static const int	WindWidth = 1300, WindHeight = 700,	//Window width and height
+	static const int	WindWidth = 1320, WindHeight = 700,	//Window width and height
 		wx = 15, wy = 15,		//Window starting coordinates
 		StatusBarHeight = 60,	//Status Bar Height
 		MenuBarHeight = 80,		//Menu Bar Height (distance from top of window to bottom line of menu bar)
