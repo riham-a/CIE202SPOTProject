@@ -14,7 +14,7 @@ class StudyPlan:public Drawable
 	int TotalUnivCredits=0, TotalMajorCredits=0,
 		TotalTrackCredits=0, TotalConcentrationCredits=0,
 		TotalMinorCredits=0;
-
+        vector<Course_Code> donecourses;
 	vector<AcademicYear*> plan;	//plan is a list of academic years
 
 	string PlanNotes;
@@ -32,6 +32,10 @@ public:
 	bool check_preco();
 	stringstream sss();
 	//int TotalCredits;
+	bool donelist(Course_Code CODE);
+	Course* Courseposition(int x, int y, int year, SEMESTER sem);
+	int SETYEAR(int x);
+	SEMESTER SETSEM(int x);
 
 };
 
