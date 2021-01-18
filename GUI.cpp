@@ -45,6 +45,11 @@ void GUI::CreateMenu() const
 	MenuItemImages[ITM_ADD] = "GUI\\Images\\Menu\\Menu_add_course.jpg";
 	MenuItemImages[ITM_EXIT] = "GUI\\Images\\Menu\\Menu_Exit.jpg";
 	MenuItemImages[ITM_Notes] = "GUI\\Images\\Menu\\Notes.jpg";
+	MenuItemImages[ITM_calculategpa] = "GUI\\Images\\Menu\\Mnue_calculategpa.jpg";
+	MenuItemImages[ITM_SU] = "GUI\\Images\\Menu\\Menu_Studentlevel.jpg";
+	MenuItemImages[ITM_Minor] = "GUI\\Images\\Menu\\Menu_Minor.jpg";
+	MenuItemImages[ITM_CS] = "GUI\\Images\\Menu\\Menu_Coursestatus.jpg";
+		
 
 	//TODO: Prepare image for each menu item and add it to the list
 
@@ -199,6 +204,10 @@ ActionData GUI::GetUserAction(string msg) const
 				case ITM_ADD: return ActionData{ ADD_CRS };	//Add course
 				case ITM_Notes: return ActionData{ ADD_Notes };
 				case ITM_EXIT: return ActionData{ EXIT };		//Exit
+				case ITM_calculategpa :return ActionData{ CALC_GPA }; //calculate gpa
+				case ITM_CS:return ActionData{ Disp_course }; //select course status
+				case ITM_Minor:return ActionData{ Minor }; //addminorcourses
+				case ITM_SU:return ActionData{ Studentlevel }; //display the student level
 
 				default: return ActionData{ MENU_BAR };	//A click on empty place in menu bar
 				}
