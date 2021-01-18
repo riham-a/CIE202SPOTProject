@@ -1,5 +1,9 @@
 #include "StudyPlan.h"
-#include "..\GUI\GUI.h"
+#include "DEf.h"
+#include <ifstream>
+#include <vector>
+#include "GUI.h"
+#include "Course.h"
 
 
 StudyPlan::StudyPlan()
@@ -208,5 +212,129 @@ void StudyPlan::importCourseCatalog() const
 	bool StudyPlan::donelist(Course_Code CODE)
 	{
 		donecourses.push_back(CODE);
+		return true;
+	}
+
+
+// feature 4 implementation:
+bool StudyPlan::ChangeCourse(Course_Code* code) {
+	pGUI->PrintMsg("Please enter the code you want to change");
+	Course_Code code = pGUI->GetSrting();
+
+	ifstream Course_Catalog;
+	Course_Catalog.open("D:\\UNI\\CIE \\ C++ \\ project\\Course_Catalog");
+	vector <Course_Code> Course_Catalog;
+	double size = 250;
+	char line[size];
+	while (!Course_Catalog.getline(line,size) {
+		pch = strtok_s(line, ",", &context);
+		while (pch != NULL)
+		{
+
+			pch = strtok_s(NULL, ",", &context);
+		}
+		Course_Catalog >> Course_Code CoursesData;
+		Course_Code.push_back(CoursesData);
+	}
+	for (int i = 0; i < Course_Catalog.size(); i++) {
+		if (code == Course_Catalog[i])
+			plan.push_back(code);
+		//plan = pGUI->UpdateInterface();
+	}
+	return true;
+}
+
+
+void StudyPlan::DrawMe(GUI* pGUI) const
+{
+	//Plan draws all year inside it.
+	for (int i = 0; i < plan.size(); i++)
+		plan[i]->DrawMe(pGUI);
+}
+void StudyPlan::setNotes(string sss)
+{
+	notes = sss;
+	 /// feature 15 & 18
+	vector <vector<Course*>> StudyPlan::CollectCoursesSP() {
+		vector <Course*> SPCourses;
+		int j;
+		  for (j = 0; j < plan.size(); j++)
+		  {
+			  vector <Course*> collector;
+			  collector = (*plan[j]).CollectCourses ();
+			  SPCourses.puch_back (collector);
+		  }
+		return SPCourses;
+	}
+
+	bool  StudyPlan::checkUnivCompul() {
+		for (int i= 0; i > CollectCoursesSP.size(); i++) {
+			for (int j = 0; j > Rules.UnivCompulsory.size(); j++) {
+			  bool* f = std :: find (CollectCoursesSP.begin (), CollectCoursesSP.end(), Rules.UnivCompulsory [i])
+				  if (f == false)
+				   pGUI->PrintMsg("crtitical issue: missed compulsory course");
+			}
+		}
+		return true;
+	}
+
+
+	bool StudyPlan :: UnivElective() {
+	
+		for (int i = 0; i > CollectCoursesSP.size(); i++) {
+			for (int j = 0; j > Rules.UnivElective.size(); j++) {
+				bool* f = std::find(CollectCoursesSP.begin(), CollectCoursesSP.end(), Rules.UnivElective[i])
+					if (f == false)
+						pGUI->PrintMsg("crtitical issue: missed elective course");
+			}
+		}
+		return true;
+	}
+
+	bool StudyPlan :: TrackCompulsory() {
+
+		for (int i = 0; i > CollectCoursesSP.size(); i++) {
+			for (int j = 0; j > Rules.TrackCompulsory.size(); j++) {
+				bool* f = std::find(CollectCoursesSP.begin(), CollectCoursesSP.end(), Rules.TrackCompulsory[i])
+					if (f == false)
+						pGUI->PrintMsg("crtitical issue: missed Track Compulsory course");
+			}
+		}
+		return true;
+
+	}
+	bool StudyPlan :: MajorCompulsory() {
+	
+		for (int i = 0; i > CollectCoursesSP.size(); i++) {
+			for (int j = 0; j > Rules.MajorCompulsory.size(); j++) {
+				bool* f = std::find(CollectCoursesSP.begin(), CollectCoursesSP.end(), Rules.MajorCompulsory[i])
+					if (f == false)
+						pGUI->PrintMsg("crtitical issue: missed Major Compulsory course");
+			}
+		}
+		return true;
+	
+	
+	}
+
+	bool StudyPlan :: MajorElective() {
+		for (int i = 0; i > CollectCoursesSP.size(); i++) {
+			for (int j = 0; j > Rules.MajorElective.size(); j++) {
+				bool* f = std::find(CollectCoursesSP.begin(), CollectCoursesSP.end(), Rules.MajorElective[i])
+					if (f == false)
+						pGUI->PrintMsg("crtitical issue: missed Major Elective course");
+			}
+		}
+		return true;
+	}
+
+	bool StudyPlan :: checkUniCre() {
+		for (int i; i > CollectCoursesSP.size(); i++) {
+			CollectCoursesSP[i].getCredits = credits;
+
+		}
+			if (credits != Rules.ReqUnivCredits)
+				pGUI->PrintMsg("crtitical issue: number of total credits is not correct");
+		
 		return true;
 	}
