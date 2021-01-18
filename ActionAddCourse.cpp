@@ -1,58 +1,46 @@
 #include "ActionAddCourse.h"
 #include "..\Registrar.h"
 #include "../Courses/UnivCourse.h"
-
 #include <iostream>
-ActionAddCourse::ActionAddCourse(Registrar* p):Action(p)
+ActionAddCourse::ActionAddCourse(Registrar* p) :Action(p)
 {
 }
 
 bool ActionAddCourse::Execute()
 {
-	GUI* pGUI = pReg->getGUI();	
-	
+	GUI* pGUI = pReg->getGUI();
+
 	pGUI->PrintMsg("Add Course to plan: Enter course Code(e.g. CIE202):");
 	Course_Code code = pGUI->GetSrting();
 
-	//TODO: add input validation
-
-
-	ActionData actData = pGUI->GetUserAction("Select a year to add coures to:(To be implemented in phase1) we will just draw coures where user clicks");
-	//TODO: add input validation
-
-	int x, y;
-	if (actData.actType == DRAW_AREA)	//user clicked inside drawing area
+	CourseInfo* cinfo;
+	cinfo = pReg->getcourseinfo(code);   //check if course is found in course catalog
+	if (cinfo == NULL)
 	{
-		//get coord where user clicked
-		x = actData.x;
-		y = actData.y;
-		
-		
-		
-		graphicsInfo gInfo{ x, y };
-
-		//TODO: given course code, get course title, crd hours from registrar
-		//For now, we will add any dummy values
-		string Title = "Test101";
-		int crd = 0;
-		Course* pC = new Course(code, Title, crd);
-		pC->setGfxInfo(gInfo);
-
-		//TODO: Ask registrar to add course to the year selected by the user
-		//TODO: add the course to the correct year obtained from registrar
-
-		//For the seke of demo, we will add the course to the 1st year, 1st semester
-		StudyPlan* pS = pReg->getStudyPlay();
-		pS->AddCourse(pC, 1, FALL);
+		pGUI->PrintMsg("course is not found..press enter to contiue");
+		Course_Code code = pGUI->GetSrting();
 	}
+	else {
+		ActionData actData = pGUI->GetUserAction("Select a year to add coures to: ");
+		int x, y;
+		if (actData.actType == DRAW_AREA)
+		{
+			x = actData.x;
+			y = actData.y;
+			graphicsInfo gInfo{ x, y };
+			string Title = "Test101";
+			int crd = cinfo->Credits;
+			Course* pC = new Course(code, Title, crd);
+			pC->setGfxInfo(gInfo);
+			StudyPlan* pS = pReg->getStudyPlay();
+			int yearof_course = pS->SETYEAR(x);
+			SEMESTER SEM = pS->SETSEM(x);
+			pS->AddCourse(pC, yearof_course, SEM);
+		}
+		return true;
 
-	
-	//TODO:
-	
-
-	return true;
+	}
 }
-
 
 ActionAddCourse::~ActionAddCourse()
 {
