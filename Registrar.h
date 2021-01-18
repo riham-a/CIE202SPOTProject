@@ -11,6 +11,8 @@ class Registrar
 	GUI *pGUI;	//pointer to GUI 
 	Rules RegRules;	//Registration rules
 	StudyPlan *pSPlan;
+		Rules* IsReq; // pointer to all rules requirements to check them
+
 
 public:
 	Registrar();
