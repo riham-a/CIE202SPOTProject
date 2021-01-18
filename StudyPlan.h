@@ -34,8 +34,8 @@ public:
 	//int TotalCredits;
 	bool donelist(Course_Code CODE);
 	Course* Courseposition(int x, int y, int year, SEMESTER sem);
-	int SETYEAR(int x);
-	SEMESTER SETSEM(int x);
+	int SETYEAR(int y);
+	SEMESTER SETSEM(int y);
 
 };
 
