@@ -338,3 +338,94 @@ void StudyPlan::setNotes(string sss)
 		
 		return true;
 	}
+	bool  StudyPlan::check_preco(Course* C, AcademicYear* A)
+	{
+		for (int i = 0; i < plan.size(); i++)
+		{
+			for (int sem = FALL; sem < SEM_CNT; sem++)
+				for (auto it = A.YearCourses[sem].begin(); it != A.YearCourses[sem].end(); ++it)
+				{
+					char* context;
+					char line[200];
+					char* pch = strtok_s(line, ",", &context);
+					string CoReq;
+					pch = strtok_s(line, ",", &context);
+					CoReq = pch;
+					pch = strtok_s(NULL, ",", &context);
+
+					stringstream StudyPlan::sss(CoReq);
+					string tmp;
+					sss >> tmp;
+					if (tmp == "")
+						return;
+					if (tmp == "CoReq:")
+					{
+						sss >> tmp;
+
+					};
+
+					string PreReq;
+					pch = strtok_s(line, ",", &context);
+					PreReq = pch;
+					pch = strtok_s(NULL, ",", &context);
+					stringstream StudyPlan::sss(PreReq);
+					string tmp1;
+					sss >> tmp;
+					if (tmp == "")
+						return;
+					if (tmp1 == "PreReq:")
+					{
+						sss >> tmp1;
+						
+					}
+					if (!(tmp = C->getPreReq() || tmp = C->getcoReq()))
+						return true;
+				};
+		}
+		
+		C->getPreReq();
+	};
+			window* pwindow = new window(600, 400, 0, 0);
+	
+        window StudyPlan::getReport()
+		{
+			for (int i = 0; i < plan.size(); i++)
+			{
+				for (int sem = FALL; sem < SEM_CNT; sem++)
+				{
+					for (auto it = A.YearCourses[sem].begin(); it != A.YearCourses[sem].end(); ++it)
+					{
+
+						if (check_preco(A.YearCourses[sem], A))
+						{
+							window* pwindow = new window(600, 400, 0, 0);
+							pwindow->DrawString(100, 100 + 35, "Moderete Issue");
+							ofstream Repotr1;
+							Repotr1.open("Moderete_Issue");
+							Repotr1 << "Moderete Issue" << A.YearCourses[sem];
+							Repotr1.close();
+						}
+					};
+				}
+			};
+			Course* C;
+			bool crd = A->Check_Credits(C);
+			for (int i = 0; i < plan.size(); i++)
+			{
+				for (int sem = FALL; sem < SEM_CNT; sem++)
+				{
+					for (auto it = A.YearCourses[sem].begin(); it != A.YearCourses[sem].end(); ++it)
+					{
+
+						if (crd)
+						{
+							window* pwindow = new window(600, 400, 0, 0);
+							pwindow->DrawString(100, 100 + 35, "Critical Issue");
+							ofstream Repotr2;
+							Repotr2.open("Moderete_Issue");
+							Repotr2 << "Moderete Issue" << A.YearCourses[sem];
+							Repotr2.close();
+						}
+					};
+				}
+			}}
