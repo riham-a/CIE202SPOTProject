@@ -23,6 +23,7 @@ public:
 	string* notes = nullptr;
 	StudyPlan* w = nullptr;
 	bool check(StudyPlan * w);
+	CourseInfo* getcourseinfo(Course_Code code);
 	~Registrar();
 };
 
