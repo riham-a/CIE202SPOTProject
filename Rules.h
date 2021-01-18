@@ -55,3 +55,4 @@ struct Rules	//contains all objects for registrations rules
 
 };
 
+Rules* IsReq;
