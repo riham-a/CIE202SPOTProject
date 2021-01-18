@@ -37,3 +37,6 @@ void Course::DrawMe(GUI* pG) const
 	pG->DrawCourse(this);
 	
 }
+string Course::GetType() const {
+	return type;
+}
