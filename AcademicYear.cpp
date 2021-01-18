@@ -47,9 +47,25 @@ bool AcademicYear::Check_Credits(Course* crd)
 		for (auto it = YearCourses[sem].begin(); it != YearCourses[sem].end(); ++it)
 		{
 			TotalCredits = TotalCredits + crd->getCredits();
-		};
+		}
 	if (!(TotalCredits <= MaxCredits && TotalCredits >= MinCredits))
 		
 		return false;
 }
 
+
+Course* AcademicYear::PositionOfCourse(int x, int y, SEMESTER sem) //to know the course place in which semester
+{
+
+	for (auto it = YearCourses[sem].begin(); it != YearCourses[sem].end(); ++it) 
+	{
+		Course* coursepointer = *it;
+		graphicsInfo pos = coursepointer->getGfxInfo();   
+		if (x > pos.x && x<pos.x + 80 && y > pos.y && y < pos.y + 40) //width and heght of course
+		{
+			return coursepointer;
+	}
+
+	}
+	return nullptr;
+}
