@@ -5,6 +5,10 @@ using namespace std;
 #include "Actions/ActionAddCourse.h"
 #include "Notes.h"
 #include "DisplayCourseInfoAction.h"
+#include"Actioncalculategpa.h"
+#include"Actionaddminor.h"
+#include "Actionselectcoursestatus.h"
+#include "Actiondisplaystudentlevel.h"
 
 Registrar::Registrar()
 {
@@ -39,6 +43,23 @@ Action* Registrar::CreateRequiredAction()
 		break;
 	case Display_CourseInfo :
 		RequiredAction = new DisplayCourseInfoAction(this);
+		break;
+	 case CALC_GPA: //calculate gpa action
+		RequiredAction = new ActionCalculategpa(this);
+		break;
+	case Studentlevel: 
+		RequiredAction = new Actiondisplaystudentlevel(this);
+		break;
+	case Minor: 
+		RequiredAction = new Actionaddminor(this);
+		break;
+	case Disp_course: 
+		RequiredAction = new Actionselectcoursestatus(this);
+		break;	
+			
+			
+			
+			
 	/*case EXIT:
 		break;
 		*/
