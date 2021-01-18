@@ -110,88 +110,95 @@ void StudyPlan::importCourseCatalog() const
 		return pointPointer;
 	}
 }
-	int StudyPlan::SETYEAR(int x) {
+	int StudyPlan::SETYEAR(int y) 
+	{
 		int year;
-		if (x > 0 && x < 264) { //year
+		if (y > 80 && y < 192) 
+		{ 
 			year = 1;
 			return year;
 		}
-		if (x>264 && x < 528) {
+		if (y >192 && y < 304)
+		{
 			year = 2;
 			return year;
 		}
-		if (x > 528 && x < 792) {
+		if (y> 304 && y< 416) 
+		{
 			year = 3;
 			return year;
 		}
-		if (x > 792 && x <1056) {
+		if (y > 416 && y<528)
+		{
 			year = 4;
 			return year;
 		}
-		if (x > 1056 && x <1320) {
+		if (y > 528 && y <640) 
+		{
 			year = 5;
 			return year;
 		}
 	}
-	SEMESTER StudyPlan::SETSEM(int x) {
+	SEMESTER StudyPlan::SETSEM(int y) {
 		SEMESTER s;
-		 if (x > 0 && x < 88) { //sem
+		 if (y> 80 && y < 117.3) { //sem
 			s = FALL;
 			return s;
 		}
-		else if (x > 88 && x < 176) {
+		else if (y > 117.3 && y < 154.6) {
 			s = SPRING;
 			return s;
 		}
-		else if (x > 176 && x < 264) {
+		else if (y> 154.6 && y < 192) {
 			s = SUMMER;
 			return s;
 		}
-		else if (x > 264 && x < 352) {
+		else if (y > 192 && y < 229.3) {
 			s = FALL;
 			return s;
 		}
-		else if (x > 352 && x < 440) {
+		else if (y > 229.3 && y < 266.6) {
 			s = SPRING;
 			return s;
 		}
-		else	if (x > 440 && x < 528) {
+		else	if (y > 266.6 && y < 303.9) {
 			s = SUMMER;
 			return s;
 		}
-		else if (x > 528 && x < 616) {
+		else if (y > 303.9 && y < 341.2) {
 			s = FALL;
 			return s;
 		}
-		else if (x > 616 && x < 704) {
+		else if (y > 341.2 && y < 378.5)
+		{
 			s = SPRING;
 			return s;
 		}
-		else if (x > 704 && x < 792) {
+		else if (y > 378.5 && y < 415.8) {
 			s = SUMMER;
 			return s;
 		}
-		else	if (x > 792 && x < 880) {
+		else	if (y > 415.8 && y < 453.1) {
 			s = FALL;
 			return s;
 		}
-		else if (x > 880 && x < 968) {
+		else if (y > 453.1 && y <490.4) {
 			s = SPRING;
 			return s;
 		}
-		else if (x > 968 && x < 1056) {
+		else if (y > 490.4 && y < 527.7) {
 			s = SUMMER;
 			return s;
 		}
-		else if (x > 1056 && x <1144) {
+		else if (y > 527.7 && y <565) {
 			s = FALL;
 			return s;
 		}
-		else if (x > 1144 && x < 1232) {
+		else if (y > 565 && y < 602.3) {
 			s = SPRING;
 			return s;
 		}
-		else if (x > 1232 && x < 1320) {
+		else if (y > 602.3 && y < 639.6) {
 			s = SUMMER;
 			return s;
 		}
