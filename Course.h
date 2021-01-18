@@ -32,5 +32,6 @@ public:
 	char* point = line;
 	void importCourseCatalog() const;
 	virtual ~Course();
+	string GetType() const ;
 
 };
