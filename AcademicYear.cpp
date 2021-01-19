@@ -28,6 +28,7 @@ bool AcademicYear::AddCourse(Course* pC, SEMESTER sem)
 }
 
 
+
 void AcademicYear::DrawMe(GUI* pGUI) const
 {
 	pGUI->DrawAcademicYear(this);
