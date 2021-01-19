@@ -1,5 +1,6 @@
 #include "AcademicYear.h"
 #include "../GUI/GUI.h"
+#include "vector"
 
 AcademicYear::AcademicYear()
 {
@@ -60,16 +61,19 @@ bool AcademicYear::Check_Credits(Course* crd)
 //int i=0, k=0;
 	for (int sem = FALL; sem < SEM_CNT; sem++)
 	{
-		for (int i = YearCourses[sem] . at (0); i != YearCourses[sem].end(); i++)
+		for (int i = (YearCourses[sem].begin()); i != (YearCourses[sem].end()); i++)
 		{
 			vector <Course*> CoursesOfYear;
 			list <Course*> ::iterator courses = YearCourses.begin();
-			advance (courses, 1)
-			CoursesOfYear.Push_back(courses);
+			advance(courses, 1)
+				CoursesOfYear.Push_back(courses);
 			return CoursesOfYear;
+
 		}
+		
 	}
 }
+
 
 
 Course* AcademicYear::PositionOfCourse(int x, int y, SEMESTER sem) //to know the course place in which semester
