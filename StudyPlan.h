@@ -47,7 +47,11 @@ public:
 	int Course :: getCredits() const;
 	bool AddCourse(Course*, int year, SEMESTER);
 	vector <vector<Course*>> CollectCoursesSP();
-	bool check_preco(Course*, AcademicYear* A);
+	vector <vector<Course*>> CollectCoursesSPDoubleMajor();
+	bool check_preco(list<Course*>);
+	bool DoubleMajor;
+	void setDoubleMajor(bool);
+	//bool check_preco(Course*, AcademicYear* A);
 	stringstream sss(char*);
 	window* pwindow = new window(600, 400, 0, 0);
 	window getReport();
