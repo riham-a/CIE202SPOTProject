@@ -52,6 +52,8 @@ struct Rules	//contains all objects for registrations rules
 
 	vector<Course_Code> MajorCompulsory;//Major Compulsory courses
 	vector<Course_Code> MajorElective;	//Major Elective courses
+	vector<concentration> concentration ; //for concentrations
+
 
 };
 
