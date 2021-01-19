@@ -96,6 +96,90 @@ void GUI::DrawCourse(const Course* pCrs)
 	pWind->SetPen(DrawColor, 2);
 	pWind->SetBrush(FillColor);
 	graphicsInfo gInfo = pCrs->getGfxInfo();
+	// to draw course properly
+	if (gInfo.y > 80 && gInfo.y < 192) //user clicked on first year
+	{
+		if (gInfo.y > 80 && gInfo.y < 117.3)
+		{
+			gInfo.y = 81;
+		}
+		else if (gInfo.x > 117.3 && gInfo.x < 154.66)
+		{
+			gInfo.y = 118.3;
+		}
+		else if (gInfo.y > 154.66 && gInfo.y < 192) 
+		{
+			gInfo.y = 155.66;
+		}
+	}
+	else if (gInfo.y > 192 && gInfo.y < 304) 
+	{
+		if (gInfo.y > 192 && gInfo.y < 229.3)
+		{
+			gInfo.y = 193;
+		}
+		else if (gInfo.y > 229.3 && gInfo.y < 266.6) 
+		{
+			gInfo.y =230.3;
+		}
+		else if (gInfo.y > 266.6 && gInfo.y <304) 
+		{
+			gInfo.y = 267.6;
+		}
+	}
+	else if (gInfo.y > 304 && gInfo.y < 416)
+	{
+		if (gInfo.y >304 && gInfo.y < 341.3) {
+			gInfo.y = 305;
+		}
+		else if (gInfo.y > 341.3 && gInfo.y < 378.6) {
+			gInfo.y = 342.3;
+		}
+		else if (gInfo.y > 378.6 && gInfo.y < 416) {
+			gInfo.y = 379.6;
+		}
+	}
+	else if (gInfo.y > 416 && gInfo.y < 526) {
+		if (gInfo.y >416 && gInfo.y < 453.3) {
+			gInfo.y = 417;
+		}
+		else if (gInfo.y >453.3&& gInfo.y < 490.6) {
+			gInfo.y = 454.3;
+		}
+		else	if (gInfo.y > 490.6 && gInfo.y < 528) {
+			gInfo.y = 491.6;
+		}
+	}
+	else if (gInfo.y > 528 && gInfo.y < 640) {
+		if (gInfo.y > 528 && gInfo.y < 565.3) {
+			gInfo.y = 529;
+		}
+		else	if (gInfo.y >565.3 && gInfo.y < 602.6) {
+			gInfo.y = 566.3;
+		}
+		else if (gInfo.y > 602.6 && gInfo.y < 640) {
+			gInfo.y = 603.6;
+		}
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	pWind->DrawRectangle(gInfo.x, gInfo.y, gInfo.x + CRS_WIDTH, gInfo.y + CRS_HEIGHT);
 	pWind->DrawLine(gInfo.x, gInfo.y + CRS_HEIGHT / 2, gInfo.x + CRS_WIDTH, gInfo.y + CRS_HEIGHT / 2);
 	
