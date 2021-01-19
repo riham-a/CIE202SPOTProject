@@ -20,7 +20,7 @@ public:
 	Action* CreateRequiredAction();
 	bool ExecuteAction(Action*);
 	void UpdateInterface();
-	StudyPlan* getStudyPlay() const;
+	StudyPlan* getStudyPlan() const;
 	void Run();
 	string* notes = nullptr;
 	StudyPlan* w = nullptr;
