@@ -19,13 +19,14 @@ class GUI
 		//Note: Items are ordered here as they appear in the menu
 		//If you want to change the menu items order, just change the order here
 		ITM_ADD,		//Add a new course
-
+                ITM_Notes,
+		ITM_Report,
+		ITM_DoubleMajor,
 		ITM_CS,
 	        ITM_Minor,
 		ITM_SU,		
 	        ITM_calculategpa,				//TODO: Add more items names here
                 ITM_EXIT,		//Exit item
-		ITM_Notes,
 		ITM_CNT			//no. of menu items ==> This should be the last line in this enum
 
 	};
