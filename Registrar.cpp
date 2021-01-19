@@ -23,7 +23,7 @@ GUI* Registrar::getGUI() const
 }
 
 //returns the study plan
-StudyPlan* Registrar::getStudyPlay() const
+StudyPlan* Registrar::getStudyPlan() const
 {
 	return pSPlan;
 }
