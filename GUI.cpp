@@ -45,6 +45,8 @@ void GUI::CreateMenu() const
 	MenuItemImages[ITM_ADD] = "GUI\\Images\\Menu\\Menu_add_course.jpg";
 	MenuItemImages[ITM_EXIT] = "GUI\\Images\\Menu\\Menu_Exit.jpg";
 	MenuItemImages[ITM_Notes] = "GUI\\Images\\Menu\\Notes.jpg";
+	MenuItemImages[ITM_Report] = "GUI\\Images\\Menu\\ValidityReport.jpg";
+	MenuItemImages[ITM_DoubleMajor] = "GUI\\Images\\Menu\\DoubleMajor.jpg";
 	MenuItemImages[ITM_calculategpa] = "GUI\\Images\\Menu\\Mnue_calculategpa.jpg";
 	MenuItemImages[ITM_SU] = "GUI\\Images\\Menu\\Menu_Studentlevel.jpg";
 	MenuItemImages[ITM_Minor] = "GUI\\Images\\Menu\\Menu_Minor.jpg";
@@ -299,6 +301,8 @@ ActionData GUI::GetUserAction(string msg) const
 				{
 				case ITM_ADD: return ActionData{ ADD_CRS };	//Add course
 				case ITM_Notes: return ActionData{ ADD_Notes };
+				case ITM_Report: return ActionData{ View_Report };
+				case ITM_DoubleMajor: return ActionData{ Double_Major };
 				case ITM_EXIT: return ActionData{ EXIT };		//Exit
 				case ITM_calculategpa :return ActionData{ CALC_GPA }; //calculate gpa
 				case ITM_CS:return ActionData{ Disp_course }; //select course status
