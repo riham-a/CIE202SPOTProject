@@ -471,24 +471,26 @@ void StudyPlan::setNotes(string sss)
 		
 		C->getPreReq();
 	};
-			window* pwindow = new window(600, 400, 0, 0);
+			
 	
         window StudyPlan::getReport()
 		{
+			
+			A->getYearCourses();
 			for (int i = 0; i < plan.size(); i++)
 			{
 				for (int sem = FALL; sem < SEM_CNT; sem++)
 				{
-					for (auto it = A.YearCourses[sem].begin(); it != A.YearCourses[sem].end(); ++it)
+					for (auto it = A->getYearCourses().begin(); it != A->getYearCourses().end(); ++it)
 					{
 
-						if (check_preco(A.YearCourses[sem], A))
+						if (check_preco(A->getYearCourses()))
 						{
 							window* pwindow = new window(600, 400, 0, 0);
 							pwindow->DrawString(100, 100 + 35, "Moderete Issue");
 							ofstream Repotr1;
 							Repotr1.open("Moderete_Issue");
-							Repotr1 << "Moderete Issue" << A.YearCourses[sem];
+							Repotr1 << "Moderete Issue" ;
 							Repotr1.close();
 						}
 					};
@@ -500,7 +502,7 @@ void StudyPlan::setNotes(string sss)
 			{
 				for (int sem = FALL; sem < SEM_CNT; sem++)
 				{
-					for (auto it = A.YearCourses[sem].begin(); it != A.YearCourses[sem].end(); ++it)
+					for (auto it = A->getYearCourses().begin(); it != A->getYearCourses().end(); ++it)
 					{
 
 						if (crd)
@@ -509,9 +511,11 @@ void StudyPlan::setNotes(string sss)
 							pwindow->DrawString(100, 100 + 35, "Critical Issue");
 							ofstream Repotr2;
 							Repotr2.open("Moderete_Issue");
-							Repotr2 << "Moderete Issue" << A.YearCourses[sem];
+							Repotr2 << "Moderete Issue" ;
 							Repotr2.close();
 						}
 					};
 				}
-			}}
+			}
+			
+		};
