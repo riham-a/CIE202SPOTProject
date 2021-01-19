@@ -2,6 +2,8 @@
 #include <list>
 #include "..\Courses\Course.h"
 #include "../GUI/Drawable.h"
+#include "Course.h"
+#include "vector"
 
 //Represent one year in the student's study plan
 class AcademicYear:public Drawable
