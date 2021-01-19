@@ -5,6 +5,7 @@
 #include <fstream>
 using namespace std;
 #include "D:\ZC\C++\Project\SPOT\Rules.h"
+#include "Course.h"
 
 
 //A full study plan for as student
