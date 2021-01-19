@@ -338,6 +338,92 @@ void StudyPlan::setNotes(string sss)
 		
 		return true;
 	}
+	//DoubleMajor
+			if (StudyPlan::DoubleMajor)
+			{
+				vector <vector<Course*>> StudyPlan::CollectCoursesSPDoubleMajor() {
+					vector <Course*> SPCoursesDoubleMajor;
+					int j;
+					for (j = 0; j < plan.size(); j++)
+					{
+						vector <Course*> collectorDoubleMajor;
+						collectorDoubleMajor = (*plan[j]).CollectCourses();  //////
+						SPCoursesDoubleMajor.push_back(collectorDoubleMajor);
+					}
+					return SPCoursesDoubleMajor;
+				};
+				bool  StudyPlan::checkUnivCompul() {
+					for (int i = 0; i > CollectCoursesSPDoubleMajor.size(); i++) {
+						for (int j = 0; j > Rules.UnivCompulsory.size(); j++) {
+							bool* f = std::find(CollectCoursesSPDoubleMajor.begin(), CollectCoursesSPDoubleMajor.end(), Rules.UnivCompulsory[i])
+								if (f == false)
+									pGUI->PrintMsg("crtitical issue: missed compulsory course");
+						}
+					}
+					return true;
+				}
+
+
+				bool StudyPlan::UnivElective() {
+
+					for (int i = 0; i > CollectCoursesSPDoubleMajor.size(); i++) {
+						for (int j = 0; j > Rules.UnivElective.size(); j++) {
+							bool* f = std::find(CollectCoursesSPDoubleMajor.begin(), CollectCoursesSPDoubleMajor.end(), Rules.UnivElective[i])
+								if (f == false)
+									pGUI->PrintMsg("crtitical issue: missed elective course");
+						}
+					}
+					return true;
+				}
+
+				bool StudyPlan::TrackCompulsory() {
+
+					for (int i = 0; i > CollectCoursesSPDoubleMajor.size(); i++) {
+						for (int j = 0; j > Rules.TrackCompulsory.size(); j++) {
+							bool* f = std::find(CollectCoursesSPDoubleMajor.begin(), CollectCoursesSPDoubleMajor.end(), Rules.TrackCompulsory[i])
+								if (f == false)
+									pGUI->PrintMsg("crtitical issue: missed Track Compulsory course");
+						}
+					}
+					return true;
+
+				}
+				bool StudyPlan::MajorCompulsory() {
+
+					for (int i = 0; i > CollectCoursesSPDoubleMajor.size(); i++) {
+						for (int j = 0; j > Rules.MajorCompulsory.size(); j++) {
+							bool* f = std::find(CollectCoursesSPDoubleMajor.begin(), CollectCoursesSPDoubleMajor.end(), Rules.MajorCompulsory[i])
+								if (f == false)
+									pGUI->PrintMsg("crtitical issue: missed Major Compulsory course");
+						}
+					}
+					return true;
+
+
+				}
+
+				bool StudyPlan::MajorElective() {
+					for (int i = 0; i > CollectCoursesSPDoubleMajor.size(); i++) {
+						for (int j = 0; j > Rules.MajorElective.size(); j++) {
+							bool* f = std::find(CollectCoursesSPDoubleMajor.begin(), CollectCoursesSPDoubleMajor.end(), Rules.MajorElective[i])
+								if (f == false)
+									pGUI->PrintMsg("crtitical issue: missed Major Elective course");
+						}
+					}
+					return true;
+				}
+
+				bool StudyPlan::checkUniCre() {
+					for (int i; i > CollectCoursesSPDoubleMajor.size(); i++) {
+						CollectCoursesSPDoubleMajor[i].getCredits = credits;
+
+					}
+					if (credits != Rules.ReqUnivCredits)
+						pGUI->PrintMsg("crtitical issue: number of total credits is not correct");
+
+					return true;
+				}
+			}
 	bool  StudyPlan::check_preco(Course* C, AcademicYear* A)
 	{
 		for (int i = 0; i < plan.size(); i++)
