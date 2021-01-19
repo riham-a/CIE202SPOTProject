@@ -23,6 +23,8 @@ enum ActionType
 	ADD_CRS,	//Add a course to study plan
 	DEL_CRS,	//Delete a course from study plan
 	ADD_Notes,
+	View_Report,
+	Double_Major,
 	Display_CourseInfo,
 
 	SAVE,		//Save a study plan to file
