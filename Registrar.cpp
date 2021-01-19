@@ -41,6 +41,10 @@ Action* Registrar::CreateRequiredAction()
 	case ADD_Notes: 
 		RequiredAction = new Notes(this);
 		break;
+	case View_Report:
+		RequiredAction = new ValidityReportAction(this);
+	case Double_Major:
+		RequiredAction = new DoubleMajorAction(this);
 	case Display_CourseInfo :
 		RequiredAction = new DisplayCourseInfoAction(this);
 		break;
