@@ -1,19 +1,20 @@
-#pragma once
 #include <vector>
-#include "StudyPlan/AcademicYear.h"
-#include "GUI/Drawable.h"
-#include "Courses/Course.h"
-#include "StudyPlan/StudyPlan.h"
-#include "Actions/Action.h"
+#include "AcademicYear.h"
+#include "../GUI/Drawable.h"
+#include "course.h"
+#include "StudyPlan.h"
+#include "Action.h"
+#include "Registrar.h"
 
-class ImportSP :public Action
+
+class ImportSP:public Action
 {
 
 public:
-	StudyPlan* pSPlan;
 	Course_Code default;
 	bool Execute();
-	StudyPlan* getStudyPlay() const;
+	StudyPlan* savedPlan() const;
+	StudyPlan* pSPlan;
 
-
+	
 };
