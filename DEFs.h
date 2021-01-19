@@ -50,5 +50,12 @@ struct ActionData
 	int x, y;
 	
 };
+struct concentration {
+	int NumConc; // to know the number of concentrations
+	int CompulCrs; //  for comulsory credits
+	int ElectCrs; // for elective credits
+	vector<Course_Code> concentrationCompulCrs;
+	vector<Course_Code> concentrationElectCrs;
+};
 
 
