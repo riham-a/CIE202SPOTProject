@@ -254,36 +254,47 @@ void StudyPlan::DrawMe(GUI* pGUI) const
 void StudyPlan::setNotes(string sss)
 {
 	notes = sss;
-	 /// feature 15 & 18
+	/// feature 15 & 18
 	vector <vector<Course*>> StudyPlan::CollectCoursesSP() {
 		vector <Course*> SPCourses;
 		int j;
-		  for (j = 0; j < plan.size(); j++)
-		  {
-			  vector <Course*> collector;
-			  collector = (*plan[j]).CollectCourses ();
-			  SPCourses.puch_back (collector);
-		  }
+		for (j = 0; j < plan.size(); j++)
+		{
+			vector <Course*> collector;
+			collector = (*plan[j]).CollectCourses();
+			SPCourses.puch_back(collector);
+		}
 		return SPCourses;
 	}
 
 	bool  StudyPlan::checkUnivCompul() {
-		for (int i= 0; i > CollectCoursesSP.size(); i++) {
-			for (int j = 0; j > Rules.UnivCompulsory.size(); j++) {
-			  bool* f = std :: find (CollectCoursesSP.begin (), CollectCoursesSP.end(), Rules.UnivCompulsory [i])
-				  if (f == false)
-				   pGUI->PrintMsg("crtitical issue: missed compulsory course");
+		vector <int> cre;
+		for (int i = 0; i > CollectCoursesSP.size(); i++) {
+			for (int j = 0; j > (*IsReq).UnivCompulsory.size(); j++) {
+				bool* f = std::find(CollectCoursesSP.begin(), CollectCoursesSP.end(), (*IsReq).UnivCompulsory[j])
+					if (f == false)
+						pGUI->PrintMsg("crtitical issue: missed compulsory course");
+				cre.push_back((*IsReq).UnivCompulsory[j]);
+
 			}
 		}
+		int credits = 0;
+		for (int k = 0; k > cre.size(); k++)
+			(cre[k].getCredits) + credits = credits;
+
+
+		if (credits != (*IsReq).ReqUnivCredits)
+			pGUI->PrintMsg("crtitical issue: number of university compulsory credits is not correct");
 		return true;
 	}
 
 
-	bool StudyPlan :: UnivElective() {
-	
+
+	bool StudyPlan::UnivElective() {
+
 		for (int i = 0; i > CollectCoursesSP.size(); i++) {
-			for (int j = 0; j > Rules.UnivElective.size(); j++) {
-				bool* f = std::find(CollectCoursesSP.begin(), CollectCoursesSP.end(), Rules.UnivElective[i])
+			for (int j = 0; j > (*IsReq).UnivElective.size(); j++) {
+				bool* f = std::find(CollectCoursesSP.begin(), CollectCoursesSP.end(), (*IsReq).UnivElective[i])
 					if (f == false)
 						pGUI->PrintMsg("crtitical issue: missed elective course");
 			}
@@ -291,36 +302,56 @@ void StudyPlan::setNotes(string sss)
 		return true;
 	}
 
-	bool StudyPlan :: TrackCompulsory() {
+	bool StudyPlan::TrackCompulsory()
+	{
 
+		vector <int> cre;
 		for (int i = 0; i > CollectCoursesSP.size(); i++) {
-			for (int j = 0; j > Rules.TrackCompulsory.size(); j++) {
-				bool* f = std::find(CollectCoursesSP.begin(), CollectCoursesSP.end(), Rules.TrackCompulsory[i])
+			for (int j = 0; j > (*IsReq).TrackCompulsory.size(); j++) {
+				bool* f = std::find(CollectCoursesSP.begin(), CollectCoursesSP.end(), (*IsReq).TrackCompulsory[i])
 					if (f == false)
 						pGUI->PrintMsg("crtitical issue: missed Track Compulsory course");
+				cre.push_back((*IsReq).TrackCompulsory[j]);
+
 			}
 		}
-		return true;
+		int credits = 0;
+		for (int k = 0; k > cre.size(); k++)
+			(cre[k].getCredits) + credits = credits;
 
+
+		if (credits != (*IsReq).TrackCompulsory)
+			pGUI->PrintMsg("crtitical issue: number of track compulsory credits is not correct");
+		return true;
 	}
-	bool StudyPlan :: MajorCompulsory() {
-	
+
+	bool StudyPlan::MajorCompulsory()
+	{
+
+		vector <int> cre;
 		for (int i = 0; i > CollectCoursesSP.size(); i++) {
-			for (int j = 0; j > Rules.MajorCompulsory.size(); j++) {
-				bool* f = std::find(CollectCoursesSP.begin(), CollectCoursesSP.end(), Rules.MajorCompulsory[i])
+			for (int j = 0; j > (*IsReq).MajorCompulsory.size(); j++) {
+				bool* f = std::find(CollectCoursesSP.begin(), CollectCoursesSP.end(), (*IsReq).MajorCompulsory[i])
 					if (f == false)
 						pGUI->PrintMsg("crtitical issue: missed Major Compulsory course");
+				cre.push_back((*IsReq).MajorCompulsory[j]);
+
 			}
 		}
+		int credits = 0;
+		for (int k = 0; k > cre.size(); k++)
+			(cre[k].getCredits) + credits = credits;
+
+
+		if (credits != (*IsReq).MajorCompulsory)
+			pGUI->PrintMsg("crtitical issue: number of Major compulsory credits is not correct");
 		return true;
-	
-	
 	}
 
-	bool StudyPlan :: MajorElective() {
+	bool StudyPlan::MajorElective() {
 		for (int i = 0; i > CollectCoursesSP.size(); i++) {
-			for (int j = 0; j > Rules.MajorElective.size(); j++) {
-				bool* f = std::find(CollectCoursesSP.begin(), CollectCoursesSP.end(), Rules.MajorElective[i])
+			for (int j = 0; j > (*IsReq).MajorElective.size(); j++) {
+				bool* f = std::find(CollectCoursesSP.begin(), CollectCoursesSP.end(), (*IsReq).MajorElective[i])
 					if (f == false)
 						pGUI->PrintMsg("crtitical issue: missed Major Elective course");
 			}
@@ -328,102 +359,20 @@ void StudyPlan::setNotes(string sss)
 		return true;
 	}
 
-	bool StudyPlan :: checkUniCre() {
-		for (int i; i > CollectCoursesSP.size(); i++) {
-			CollectCoursesSP[i].getCredits = credits;
+	bool StudyPlan::checkUniCre()
+	{
+		int credits = 0;
+		for (int i; i > CollectCoursesSP.size(); i++)
+		{
+			(CollectCoursesSP[i].getCredits) + credits = credits;
 
 		}
-			if (credits != Rules.ReqUnivCredits)
-				pGUI->PrintMsg("crtitical issue: number of total credits is not correct");
-		
+		if (credits != (*IsReq).ReqTotalCredits)
+			pGUI->PrintMsg("crtitical issue: number of total credits is not correct");
+
 		return true;
 	}
-	//DoubleMajor
-			if (StudyPlan::DoubleMajor)
-			{
-				vector <vector<Course*>> StudyPlan::CollectCoursesSPDoubleMajor() {
-					vector <Course*> SPCoursesDoubleMajor;
-					int j;
-					for (j = 0; j < plan.size(); j++)
-					{
-						vector <Course*> collectorDoubleMajor;
-						collectorDoubleMajor = (*plan[j]).CollectCourses();  //////
-						SPCoursesDoubleMajor.push_back(collectorDoubleMajor);
-					}
-					return SPCoursesDoubleMajor;
-				};
-				bool  StudyPlan::checkUnivCompul() {
-					for (int i = 0; i > CollectCoursesSPDoubleMajor.size(); i++) {
-						for (int j = 0; j > Rules.UnivCompulsory.size(); j++) {
-							bool* f = std::find(CollectCoursesSPDoubleMajor.begin(), CollectCoursesSPDoubleMajor.end(), Rules.UnivCompulsory[i])
-								if (f == false)
-									pGUI->PrintMsg("crtitical issue: missed compulsory course");
-						}
-					}
-					return true;
-				}
 
-
-				bool StudyPlan::UnivElective() {
-
-					for (int i = 0; i > CollectCoursesSPDoubleMajor.size(); i++) {
-						for (int j = 0; j > Rules.UnivElective.size(); j++) {
-							bool* f = std::find(CollectCoursesSPDoubleMajor.begin(), CollectCoursesSPDoubleMajor.end(), Rules.UnivElective[i])
-								if (f == false)
-									pGUI->PrintMsg("crtitical issue: missed elective course");
-						}
-					}
-					return true;
-				}
-
-				bool StudyPlan::TrackCompulsory() {
-
-					for (int i = 0; i > CollectCoursesSPDoubleMajor.size(); i++) {
-						for (int j = 0; j > Rules.TrackCompulsory.size(); j++) {
-							bool* f = std::find(CollectCoursesSPDoubleMajor.begin(), CollectCoursesSPDoubleMajor.end(), Rules.TrackCompulsory[i])
-								if (f == false)
-									pGUI->PrintMsg("crtitical issue: missed Track Compulsory course");
-						}
-					}
-					return true;
-
-				}
-				bool StudyPlan::MajorCompulsory() {
-
-					for (int i = 0; i > CollectCoursesSPDoubleMajor.size(); i++) {
-						for (int j = 0; j > Rules.MajorCompulsory.size(); j++) {
-							bool* f = std::find(CollectCoursesSPDoubleMajor.begin(), CollectCoursesSPDoubleMajor.end(), Rules.MajorCompulsory[i])
-								if (f == false)
-									pGUI->PrintMsg("crtitical issue: missed Major Compulsory course");
-						}
-					}
-					return true;
-
-
-				}
-
-				bool StudyPlan::MajorElective() {
-					for (int i = 0; i > CollectCoursesSPDoubleMajor.size(); i++) {
-						for (int j = 0; j > Rules.MajorElective.size(); j++) {
-							bool* f = std::find(CollectCoursesSPDoubleMajor.begin(), CollectCoursesSPDoubleMajor.end(), Rules.MajorElective[i])
-								if (f == false)
-									pGUI->PrintMsg("crtitical issue: missed Major Elective course");
-						}
-					}
-					return true;
-				}
-
-				bool StudyPlan::checkUniCre() {
-					for (int i; i > CollectCoursesSPDoubleMajor.size(); i++) {
-						CollectCoursesSPDoubleMajor[i].getCredits = credits;
-
-					}
-					if (credits != Rules.ReqUnivCredits)
-						pGUI->PrintMsg("crtitical issue: number of total credits is not correct");
-
-					return true;
-				}
-			}
 	bool  StudyPlan::check_preco(Course* C, AcademicYear* A)
 	{
 		for (int i = 0; i < plan.size(); i++)
