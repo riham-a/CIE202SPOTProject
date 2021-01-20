@@ -9,15 +9,14 @@ using namespace std;
 Actionselectcoursestatus::Actionselectcoursestatus(Registrar*p) :Action(p)
 {
 }
-
-bool Actionselectcoursestatus::Execute(){
+bool Actionselectcoursestatus::Execute()
+{
 	GUI* pGUI = pReg->getGUI();
-	int static wholedonecred = 0;  //to be used in 25
+
 	ActionData actData = pGUI->GetUserAction("choose course to add it's status");
 		int x, y;
 	if (actData.actType == DRAW_AREA)	
 	{
-		
 		x = actData.x;
 		y = actData.y;
 		StudyPlan* pS = pReg->getStudyPlay();
@@ -32,14 +31,22 @@ bool Actionselectcoursestatus::Execute(){
 			if (status == "Done" || status == "done")
 			{
 				int credt= P->getCredits();
-				wholedonecred += credt;
+				int functiondispsl = pReg->Coursestatus;
 				Course_Code CODE = P->getCode();
-				pS->donelist(CODE);
 			}
-			else {
-				wholedonecred = wholedonecred;
+
+			else	if (status == "in progress" || status == "In progress")
+			{
+				pGUI->PrintMsg("course now is in progress");
+				Course_Code enter = pGUI->GetSrting();
+			}
+			else if (status == "Pending" || status == "Pending")
+			{
+				pGUI->PrintMsg("course now is in progress");
+				Course_Code enter = pGUI->GetSrting();
 			}
 		}
+
 		else //clicks in null place or empty area
 		{
 			pGUI->PrintMsg("invalid");
