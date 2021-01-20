@@ -1,7 +1,11 @@
 #include "ActionAddCourse.h"
 #include "..\Registrar.h"
 #include "../Courses/UnivCourse.h"
-using namespace std;
+#include <iostream>
+#include "ActionAddCourse.h"
+#include "..\Registrar.h"
+#include "../Courses/UnivCourse.h"
+#include "../GUI/GUI.h"
 #include <iostream>
 ActionAddCourse::ActionAddCourse(Registrar* p) :Action(p)
 {
@@ -13,59 +17,47 @@ bool ActionAddCourse::Execute()
 
 	pGUI->PrintMsg("Add Course to plan: Enter course Code(e.g. CIE202):");
 	Course_Code code = pGUI->GetSrting();
-
-	//TODO: add input validation
-//	CourseInfo coinfo;
-//	coinfo.Code = pReg->getcourseinfo(code);
-
-
-	ActionData actData = pGUI->GetUserAction("Select a year to add coures to");
-	//TODO: add input validation
-
-	int x, y;
-	if (actData.actType == DRAW_AREA)	//user clicked inside drawing area
+	CourseInfo* coinfo;   //pointer to title,code,prereq,...
+	coinfo = pReg->getcourseinfo(code);   //check if course is found in course catalog
+	if (coinfo == NULL)
 	{
-		//get coord where user clicked
-		x = actData.x;
-		y = actData.y;
+		pGUI->PrintMsg("course is not found..press enter to contiue");
+		Course_Code code = pGUI->GetSrting();
+	}
+	else {
+		ActionData actData = pGUI->GetUserAction("Select a year to add coures to: ");
+
+		int x, y;
+		if (actData.actType == DRAW_AREA)	//user clicked inside drawing area
+		{
+			x = actData.x;
+			y = actData.y;
+         graphicsInfo gInfo{ x, y };
+		 StudyPlan* pS = pReg->getStudyPlay();
+		 int yearof_course = pS->SETYEAR(x);
+		 SEMESTER SEM = pS->SETSEM(x);
+
+		 string Title = coinfo->Title;
+			int crd = coinfo->Credits;
+			//int crd = 0;
+			Course* pC = new Course(code, Title, crd);
+			pC->setGfxInfo(gInfo);
+		
+			//pS->AddCourse(pC, syearsem.year, syearsem.s);
+			pS->AddCourse(pC, yearof_course, SEM);
+		}
+		//TODO:
 
 
+		return true;
 
-		graphicsInfo gInfo{ x, y };
-
-		//TODO: given course code, get course title, crd hours from registrar
-		//For now, we will add any dummy values
-		string Title = "Test101";
-		int crd = 0;
-		Course* pC = new Course(code, Title, crd);
-		pC->setGfxInfo(gInfo);
-
-		//TODO: Ask registrar to add course to the year selected by the user
-		//TODO: add the course to the correct year obtained from registrar
-
-		//For the seke of demo, we will add the course to the 1st year, 1st semester
-		StudyPlan* pS = pReg->getStudyPlay();
-		pS->AddCourse(pC, 1, FALL);
 	}
 
 
-	//TODO:
 
-
-	return true;
 }
 
 
 ActionAddCourse::~ActionAddCourse()
 {
 }
-
-
-
-
-
-
-
-
-
-
