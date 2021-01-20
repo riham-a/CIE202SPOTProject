@@ -1,0 +1,12 @@
+#pragma once
+#include "Registrar.h"
+#include "ActionSelectCourseStatus.h"
+class Actiondisplaystudentlevel:public Action
+{
+public:
+	Actiondisplaystudentlevel(Registrar* );
+	bool Execute();
+	~Actiondisplaystudentlevel();
+};
+
+
