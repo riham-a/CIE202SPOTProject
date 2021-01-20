@@ -26,6 +26,7 @@ public:
 	StudyPlan* w = nullptr;
 	bool check(StudyPlan * w);
 	CourseInfo* getcourseinfo(Course_Code code);
+	int Coursestatus(int credits);
 	bool importcoursecatalog();
 	~Registrar();
 };
