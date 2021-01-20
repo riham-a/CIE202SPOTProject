@@ -186,7 +186,14 @@ bool Registrar::importcoursecatalog()
 }
 
 
-
+int Registrar::Coursestatus(int credits)//function to get donecourses credits
+{
+	int static creditsofdonecourses = 0; 
+	creditsofdonecourses += credits;
+	
+	//return credits;
+	return  creditsofdonecourses;
+}
 
 
 
