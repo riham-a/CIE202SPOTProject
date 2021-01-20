@@ -473,7 +473,7 @@ void StudyPlan::setNotes(string sss)
 	};
 			
 	
-        window StudyPlan::getReport()
+       void StudyPlan::getReport()
 		{
 			
 			A->getYearCourses();
@@ -508,7 +508,7 @@ void StudyPlan::setNotes(string sss)
 						if (crd)
 						{
 							window* pwindow = new window(600, 400, 0, 0);
-							pwindow->DrawString(100, 100 + 35, "Critical Issue");
+							pwindow->DrawString(100, 100 + 35, "Critical Issue...A petiotion is needed");
 							ofstream Repotr2;
 							Repotr2.open("Moderete_Issue");
 							Repotr2 << "Moderete Issue" ;
