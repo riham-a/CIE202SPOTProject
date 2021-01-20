@@ -120,7 +120,70 @@ CourseInfo* Registrar::getcourseinfo(Course_Code code)
 	}
 }
 
+bool Registrar::importcoursecatalog()
+{
+	fstream file;
+	file.open("Files\\CourseCatalog.txt", ios::in);
+	//ifstream coursecatalog("course catalog.txt");
+	// if (file.fail()) { cout << "open file operation is failed" << endl; }
 
+	string credits;
+	string data;
+	string corequisit;
+	string prerequisit;
+	if (file.fail()) {
+		return false;
+	}
+	else
+	{
+		while (getline(file, data)) {   //to loop the data in lines of the txt file
+			CourseInfo Info;
+			stringstream s(data);
+			getline(s, Info.Code, ',');
+			getline(s, Info.Title, ',');
+			getline(s, credits, ',');
+			Info.Credits = stoi(credits); // function to store an integer as a string
+			getline(s, corequisit, ':');   //to reed corequisites part
+			if (corequisit == "Coreq")
+			{
+				string cours;
+				getline(s, cours, ',');
+				while (true) 
+				{
+					auto end = cours.find("And");
+					string coursecode = cours.substr(0, end - 1);
+					Info.CoReqList.push_back(coursecode);
+					cours =cours.substr(end + 4, cours.length());
+					if (end == -1) 
+					{
+						break;
+					}
+				}
+
+			}
+			getline(s, prerequisit, ':');   //to reed prequisites part
+			if (prerequisit == "Prereq")
+			{
+				string prequi = s.str();
+				getline(s, prequi, ',');
+				while (true)
+				{
+					auto end = prequi.find("And");
+					string coursecode =prequi.substr(0, end - 1);
+					Info.PreReqList.push_back(coursecode);
+					prequi = prequi.substr(end + 4, prequi.length());
+					if (end == -1) {
+						break;
+					}
+				}
+
+			}
+			
+			RegRules.CourseCatalog.push_back(Info);  // to shift course info into course catalog vector
+		}
+		return true;
+	}
+}
 
 
 
